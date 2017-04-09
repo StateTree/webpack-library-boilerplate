@@ -13,7 +13,12 @@ var json = utils.getPropertiesFromObj(packageJson,[
 ]);
 
 var newJson = {
-    'devDependencies': json.dependencies
+    'devDependencies': json.dependencies,
+    'scripts':{
+        "prebuild": "node scripts/prebuild.js",
+        "build": "node scripts/build.js production",
+        "postbuild": "node scripts/postbuild.js"
+    }
 };
 
 command.createDir( '../../src',function(){
