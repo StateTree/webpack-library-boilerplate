@@ -11,14 +11,27 @@ Webpack babel based boilerplate for producing libraries (Input: ES6, Output: uni
 ## Process
 
 ```
-ES6 source files
-       |
-       |
-    webpack
-       |
-       | <--- babel, eslint
-       |
-   umd format
+	ES6 source files
+            |
+            |
+   (webpack + babel)
+            |
+            |
+            |
+        umd format
+```
+
+Result:
+
+```
+library
+  |
+  |__ src
+  |    |__ index.js (es6)
+  |
+  |__ lib
+       |__ library.js (es5)
+
 ```
 
 ## How to use
@@ -39,7 +52,7 @@ ES6 source files
 * `npm run postbuild` - buildconfig inside scripts is used to execute copy operation
 
 ## To-do
-1. Eslint support
-2. Test Framework
-3. Doc support
+1. Test Framework
+2. Doc support
+3. Release Version Incrementer Support
 
