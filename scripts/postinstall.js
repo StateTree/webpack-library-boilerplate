@@ -27,10 +27,12 @@ command.createDir( '../../src',function(){
             command.copyDir( './scripts', '../../scripts',function(){
                 command.copyFile( './webpack.config.js', '../../webpack.config.js',function(){
                     command.copyFile( './.babelrc', '../../.babelrc',function(){
-                        command.updateJson( '../../package.json', newJson,function(){
-                            command.remove('../../scripts/postinstall.js',function(){
-                                command.remove('../../node_modules/library-boilerplate')
-                            })
+                        command.copyFile( './.eslintrc', '../../.eslintrc',function(){
+                            command.updateJson( '../../package.json', newJson,function(){
+                                command.remove('../../scripts/postinstall.js',function(){
+                                    command.remove('../../node_modules/library-boilerplate')
+                                })
+                            });
                         });
                     });
                 });
