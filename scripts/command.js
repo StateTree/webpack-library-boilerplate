@@ -156,6 +156,21 @@ function _execute(cmdLine,setNodeEnv,options,callback){
             }
         });
     }
+    if(command){
+        /* eslint-disable */
+        command.stdout.on('data', function(data) {
+            process.stdout.write(data);
+        });
+        command.stderr.on('data', function(data) {
+            process.stderr.write(data);
+        });
+        command.on('error', function(err) {
+            process.stderr.write(err);
+        });
+        /* eslint-enable */
+    }
+
+
 
 
 }
