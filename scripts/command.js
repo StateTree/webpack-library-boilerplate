@@ -106,13 +106,16 @@ function changeCurrentWorkingDirTemporarily(dirPath, command){
     });
 }
 
-function execute(commands,setNodeEnv,options){
+function execute(commands,setNodeEnv,options,callback){
     if(Array.isArray(commands)){
         commands.map(function(cmdLine){
             _execute(cmdLine,setNodeEnv,options);
         })
     }else {
         _execute(commands,setNodeEnv,options);
+    }
+    if(callback){
+        callback()
     }
 }
 
