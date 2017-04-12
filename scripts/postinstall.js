@@ -21,6 +21,10 @@ var newJson = {
     }
 };
 
+/*command.remove('../../scripts/postinstall.js',function(){
+	command.remove('../../node_modules/library-boilerplate')
+})*/
+
 command.createDir( '../../src',function(){
     command.createDir( '../../test',function(){
         command.createDir( '../../lib',function(){
@@ -28,11 +32,7 @@ command.createDir( '../../src',function(){
                 command.copyFile( './webpack.config.js', '../../webpack.config.js',function(){
                     command.copyFile( './.babelrc', '../../.babelrc',function(){
                         command.updateJson( '../../package.json', newJson,function(){
-                            command.execute('../../node_modules/.bin/eslint --init',null,null,function(){
-                                command.remove('../../scripts/postinstall.js',function(){
-                                    command.remove('../../node_modules/library-boilerplate')
-                                })
-                            })
+                            command.execute('../../node_modules/.bin/eslint --init')
                         });
                     });
                 });
