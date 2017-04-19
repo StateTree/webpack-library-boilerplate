@@ -18,7 +18,10 @@ var newJson = {
         "prebuild": "node scripts/prebuild.js",
         "build": "node scripts/build.js production",
         "postbuild": "node scripts/postbuild.js"
-    }
+    },
+	'files': [
+		"lib"
+	]
 };
 
 /*command.remove('../../scripts/postinstall.js',function(){
