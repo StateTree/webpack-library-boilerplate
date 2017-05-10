@@ -20,7 +20,8 @@ var newJson = {
         "postbuild": "node scripts/postbuild.js"
     },
 	'files': [
-		"lib"
+		"lib",
+		"dist"
 	]
 };
 

@@ -18,7 +18,7 @@ Webpack babel based boilerplate for producing libraries (Input: ES6, Output: uni
             |
             |
             |
-        umd format
+umd format and Module format
 ```
 
 Result:
@@ -30,7 +30,11 @@ library
   |    |__ index.js (es6)
   |
   |__ lib
-       |__ library.js (es5)
+  |    |__ library.js (es5)
+  |
+  |__ dist
+        |__ src
+              |__ index.js (es5)
 
 ```
 
@@ -38,7 +42,7 @@ library
 
 1. Create your library project `npm init`
 2. `npm install git+http://github.com/StateTree/webpack-library-boilerplate.git`
-	1. This will create src, lib, test, docs directory
+	1. This will create src, lib,build, test, docs directory
 	2. Creates babel and webpack config
 	3. Updates your package.json properties `devDependencies` and `scripts`
 	4. Removes itself from your node_modules project
@@ -47,8 +51,8 @@ library
 
 ## Scripts Provided by this
 
-* `npm run prebuild` - Removes the lib folder
-* `npm run build` - produces production version of your library under the `lib` folder
+* `npm run prebuild` - Removes the dist and lib folder
+* `npm run build` - produces module version of your library under the `lib` folder and UMD version in dist folder
 * `npm run postbuild` - buildconfig inside scripts is used to execute copy operation
 
 ## To-do
