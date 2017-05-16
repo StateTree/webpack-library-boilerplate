@@ -13,6 +13,7 @@ var json = utils.getPropertiesFromObj(packageJson,[
 ]);
 
 var newJson = {
+	'main' : 'lib/index.js',
     'devDependencies': json.dependencies,
     'scripts':{
         "prebuild": "node scripts/prebuild.js",
