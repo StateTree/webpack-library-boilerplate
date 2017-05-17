@@ -1,6 +1,7 @@
 /* eslint no-var: 0 */
 var command = require('./command');
 var packageJson = require('./../package.json');
+var webpackConfig = require('./../webpack.config');
 var utils = require('./utils');
 
 
@@ -13,7 +14,7 @@ var json = utils.getPropertiesFromObj(packageJson,[
 ]);
 
 var newJson = {
-	'main' : 'lib/index.js',
+	'main' : 'lib/' + webpackConfig.output.library,
     'devDependencies': json.dependencies,
     'scripts':{
         "prebuild": "node scripts/prebuild.js",
@@ -21,14 +22,9 @@ var newJson = {
         "postbuild": "node scripts/postbuild.js"
     },
 	'files': [
-		"lib",
-		"dist"
+		"lib"
 	]
 };
-
-/*command.remove('../../scripts/postinstall.js',function(){
-	command.remove('../../node_modules/library-boilerplate')
-})*/
 
 //todo implement 
 //command.execute('../../node_modules/.bin/eslint --init')

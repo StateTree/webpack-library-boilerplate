@@ -21,7 +21,7 @@ const config = {
     entry: __dirname + '/src/index.js',
     devtool: 'source-map',
     output: {
-        path: __dirname + '/dist',
+        path: __dirname + '/lib',
         filename: libFile,
         library: libraryName,
         libraryTarget: 'umd',
@@ -41,8 +41,8 @@ const config = {
             }
         ]
     },
-    resolve: {
-        modules: [path.resolve('./src')],
+    resolve: { // In resolve we tell Webpack where to look for modules. as of Webpack 2.0 important to give node modules folder too
+        modules: [path.resolve('./src'),'node_modules'],
         extensions: ['.json', '.js']
     },
     plugins: plugins
