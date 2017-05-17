@@ -4,8 +4,7 @@
   "description": "Boilerplate for JS library projects",
   "main": "",
   "scripts": {
-    "postinstall": "node scripts/postinstall.js ",
-    "sanjay"
+    "postinstall": "node scripts/postinstall.js "
   },
   "author": "Sanjay Krishna Anbalagan",
   "license": "MIT",
