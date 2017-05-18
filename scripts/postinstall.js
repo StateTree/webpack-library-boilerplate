@@ -33,18 +33,20 @@ command.createDir( '../../src',function(){
     command.createDir( '../../test',function(){
         command.createDir( '../../lib',function(){
             command.copyDir( './scripts', '../../scripts',function(){
-                command.copyFile( './webpack.config.js', '../../webpack.config.js',function(){
-                    command.copyFile( './.babelrc', '../../.babelrc',function(){
-	                    command.copyFile( './.gitignore', '../../.gitignore',function(){
-		                    command.copyFile( './.eslintrc.json', '../../.eslintrc.json',function(){
-			                    command.updateJson( '../../package.json', newJson,function(){
-				                    command.remove('../../scripts/postinstall.js',function(){
-					                    command.remove('../../node_modules/library-boilerplate')
-				                    })
-			                    });
-		                    })
+	            command.copyDir( './src', '../../src',function(){
+	                command.copyFile( './webpack.config.js', '../../webpack.config.js',function(){
+	                    command.copyFile( './.babelrc', '../../.babelrc',function(){
+		                    command.copyFile( './.gitignore', '../../.gitignore',function(){
+			                    command.copyFile( './.eslintrc.json', '../../.eslintrc.json',function(){
+				                    command.updateJson( '../../package.json', newJson,function(){
+					                    command.remove('../../scripts/postinstall.js',function(){
+						                    command.remove('../../node_modules/library-boilerplate')
+					                    })
+				                    });
+			                    })
+		                    });
 	                    });
-                    });
+	                });
                 });
             });
         });
