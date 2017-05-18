@@ -14,7 +14,7 @@ var json = utils.getPropertiesFromObj(packageJson,[
 ]);
 
 var newJson = {
-	'main' : 'lib/' + webpackConfig.output.library,
+	'main' : 'lib/' + webpackConfig.output.library + '.js',
     'devDependencies': json.dependencies,
     'scripts':{
         "prebuild": "node scripts/prebuild.js",
@@ -35,13 +35,15 @@ command.createDir( '../../src',function(){
             command.copyDir( './scripts', '../../scripts',function(){
                 command.copyFile( './webpack.config.js', '../../webpack.config.js',function(){
                     command.copyFile( './.babelrc', '../../.babelrc',function(){
-	                    command.copyFile( './.eslintrc.json', '../../.eslintrc.json',function(){
-		                    command.updateJson( '../../package.json', newJson,function(){
-			                    command.remove('../../scripts/postinstall.js',function(){
-				                    command.remove('../../node_modules/library-boilerplate')
-			                    })
-		                    });
-	                    })
+	                    command.copyFile( './.gitignore', '../../.gitignore',function(){
+		                    command.copyFile( './.eslintrc.json', '../../.eslintrc.json',function(){
+			                    command.updateJson( '../../package.json', newJson,function(){
+				                    command.remove('../../scripts/postinstall.js',function(){
+					                    command.remove('../../node_modules/library-boilerplate')
+				                    })
+			                    });
+		                    })
+	                    });
                     });
                 });
             });
