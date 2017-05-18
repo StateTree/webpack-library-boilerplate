@@ -2,6 +2,25 @@
 var exec = require('child_process').exec;
 var fs = require('fs-extra');
 
+function moveFile(filePath,destinationPath,callback){
+    if(!destinationPath){
+        throw new Error('Destination directory missing');
+    }
+    if(!filePath){
+        throw new Error('Source file missing');
+    }
+
+    fs.move(filePath,destinationPath,function(error){
+        if(error){
+            return console.error(error)
+        }else{
+            console.log('Move: ' + filePath + ' moved to ' + destinationPath)
+            if(callback){
+                callback()
+            }
+        }
+    });
+}
 
 function copyFile(filePath,destinationPath,callback){
     if(!destinationPath){
@@ -178,6 +197,7 @@ function _execute(cmdLine,setNodeEnv,options,callback){
 
 
 module.exports = {
+    moveFile,
     copyFile,
     copyDir,
     createDir,
