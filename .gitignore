@@ -1,7 +1,22 @@
+# Mac
+.DS_Store
 
-# Dependency directory
+# Intellij
+.idea/
+
+# VSCode
+plugins/
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# temp files
+/*.log
+npm-cache/
+log/
+/*.eslintcache
+
+# npm
 node_modules
-
-# Remove some common IDE working directories
-.idea
-.vscode

@@ -4,7 +4,7 @@ Webpack babel based boilerplate for producing libraries (Input: ES6, Output: uni
 
 ## Features
 
-* Webpack 2.
+* Webpack 3.
 * ES6 as a source.
 * Exports in a [umd]
 
