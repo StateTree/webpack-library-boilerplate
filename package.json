@@ -4,6 +4,7 @@
   "description": "Boilerplate for JS library projects",
   "main": "",
   "scripts": {
+    "postinstall": "node scripts/postinstall.js ",
     "start": "webpack-dev-server --progress --config webpack.config.js --open",
     "lint": "eslint ./src --ext .js --cache --fix --ext .jsx --cache --fix",
     "prebuild": "rimraf lib && rimraf demo",
