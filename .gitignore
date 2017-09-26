@@ -20,3 +20,7 @@ log/
 
 # npm
 node_modules
+
+/demo
+/lib
+
