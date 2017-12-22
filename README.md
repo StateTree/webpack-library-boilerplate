@@ -51,12 +51,18 @@ library
 
 ## Scripts Provided by this
 
+* `npm run start` - webpack dev server executes demo.js
 * `npm run prebuild` - Removes the dist and lib folder
 * `npm run build` - produces module version of your library under the `lib` folder and UMD version in dist folder
 * `npm run postbuild` - buildconfig inside scripts is used to execute copy operation
+* `npm run release:bugfix` - execute npm version `patch` update and merge to `master branch`
+* `npm run release:feature` - execute npm version `minor` update and merge to `master branch`
+* `npm run release:breakingchange` - execute npm version `minor` update and merge to `master branch`
+
 
 ## To-do
 1. Test Framework
 2. Doc support
-3. Release Version Incrementer Support
+3. importing .gitignore file using copy operation
+4. coverage report generator
 
