@@ -13,7 +13,7 @@ const paths = {
     }
 };
 
-const libPath = "lib/" + libraryName;
+const libPath = "lib/index";
 paths.entry[libPath] = "./lib/index.js";
 
 const config = {

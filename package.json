@@ -1,8 +1,8 @@
 {
   "name": "webpack-library-boilerplate",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Boilerplate for JS library projects",
-  "main": "",
+  "main": "lib/index.js",
   "scripts": {
     "postinstall": "node scripts/postinstall.js ",
     "start": "webpack-dev-server --progress --config webpack.config.js --open",
