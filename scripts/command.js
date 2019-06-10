@@ -2,7 +2,7 @@
 var exec = require("child_process").exec;
 var fs = require("fs-extra");
 
-function moveFile(filePath,destinationPath,callback){
+async function moveFile(filePath,destinationPath,callback){
     if(!destinationPath){
         throw new Error("Destination directory missing");
     }
@@ -10,19 +10,15 @@ function moveFile(filePath,destinationPath,callback){
         throw new Error("Source file missing");
     }
 
-    fs.move(filePath,destinationPath,function(error){
-        if(error){
-            return console.error(error)
-        }else{
-            console.log("Move: " + filePath + " moved to " + destinationPath)
-            if(callback){
-                callback()
-            }
-        }
-    });
+    try {
+        await fs.move(filePath, destinationPath)
+        console.log("Move: " + filePath + " moved to " + destinationPath)
+    } catch (err) {
+        console.error(err);
+    }
 }
 
-function copyFile(filePath,destinationPath,callback){
+async function copyFile(filePath,destinationPath,callback){
     if(!destinationPath){
         throw new Error("Destination directory missing");
     }
@@ -30,19 +26,15 @@ function copyFile(filePath,destinationPath,callback){
         throw new Error("Source file missing");
     }
 
-    fs.copy(filePath,destinationPath,function(error){
-        if(error){
-            return console.error(error)
-        }else{
-            console.log("COPY: " + filePath + " copied to " + destinationPath)
-            if(callback){
-                callback()
-            }
-        }
-    });
+    try {
+        await fs.copy(filePath, destinationPath)
+        console.log( "COPY: " + filePath + " copied to " + destinationPath)
+    } catch (err) {
+        console.error(err);
+    }
 }
 
-function copyDir(source,dest,callback){
+async function copyDir(source,dest){
     if(!source){
         throw new Error("Source directory missing");
     }
@@ -50,70 +42,54 @@ function copyDir(source,dest,callback){
         throw new Error("Destination directory missing");
     }
 
-    fs.copy(source,dest,function(error){
-        if(error){
-            return console.error(error)
-        }else{
-            console.log( "COPY: " + source + " copied to " + dest)
-            if(callback){
-                callback();
-            }
-        }
-    });
+    try {
+        await fs.copy(source, dest)
+        console.log( "COPY: " + source + " copied to " + dest)
+    } catch (err) {
+        console.error(err);
+    }
 }
 
-function createDir(dirPath,callback){
+async function createDir(dirPath){
     if(!dirPath){
         throw new Error("directory path missing");
     }
 
-
-    fs.ensureDir(dirPath,function(error){
-        if(error){
-            return console.error(error)
-        }else{
-            console.log( "Directory created at : " + dirPath)
-            if(callback){
-                callback();
-            }
-        }
-    });
+    try {
+        await fs.ensureDir(dirPath)
+        console.log( "Directory created at : " + dirPath)
+    } catch (err) {
+        console.error(err);
+    }
 }
 
-function remove(source,callback){
-    fs.remove(source, function(error) {
-        if (error) {
-            return console.error(error)
-        }
-        console.log("REMOVE: " + source + " deleted")
-        if(callback){
-            callback();
-        }
-    })
+async function remove(source,callback){
+    try {
+        await fs.remove(source);
+        console.log("REMOVE: " + source + " deleted");
+    } catch(error){
+        console.error(error)
+    }
 }
 
-function writeJson(source,json){
-    fs.writeJson(source,json, function(error) {
-        if (error) {
-            return console.error(error)
-        }
+async function writeJson(source,json){
+    try {
+        await fs.writeJson(source, json);
         console.log("WRITE: " + source + " created")
-    })
+    } catch(error){
+        console.error(error)
+    }
 }
 
-function updateJson(source,newJson,callback){
-    fs.readJson(source,function(error,sourceJson){
-        var json = Object.assign({},sourceJson,newJson);
-        fs.outputJson(source,json, function(error) {
-            if (error) {
-                return console.error(error)
-            }
-            console.log("WRITE: " + source + " created")
-            if(callback){
-                callback();
-            }
-        })
-    })
+async function updateJson(source,newJson,callback){
+    try {
+        const sourceJson = await fs.readJson(source);
+        const updatedJson = Object.assign({}, sourceJson, newJson);
+        await fs.outputJson(source,updatedJson);
+        console.log("WRITE: " + source + " created")
+    } catch (err) {
+        console.error(err);
+    }
 
 }
 
@@ -141,7 +117,10 @@ function _execute(cmdLine,setNodeEnv,options,callback){
         throw new Error("String format expected for commands")
     }
     if(setNodeEnv){
-        var environ = (!process.argv[2].indexOf("development")) ? "development" : "production";
+        var environ = "production";
+        if (process.argv[2] && process.argv[2].indexOf("development")){
+            environ = "development";
+        }
         if (process.platform === "win32") {
             cmdLine = "set NODE_ENV=" + environ + "&& " + cmdLine;
         } else {
@@ -168,8 +147,13 @@ function _execute(cmdLine,setNodeEnv,options,callback){
                 console.error(`exec error: ${error}`);
                 return;
             }
-            console.log(`stdout: ${stdout}`);
-            console.log(`stderr: ${stderr}`);
+            if(stdout){
+                console.log(`stdout: ${stdout}`);
+            }
+            if(stderr){
+                console.log(typeof stderr, stderr);
+                console.log(`stderr: ${stderr}`);
+            }
             if(callback){
                 callback();
             }
@@ -207,4 +191,3 @@ module.exports = {
     execute,
     changeCurrentWorkingDirTemporarily
 };
-

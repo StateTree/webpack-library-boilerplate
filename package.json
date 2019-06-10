@@ -19,16 +19,16 @@
   "author": "Sanjay Krishna Anbalagan",
   "license": "MIT",
   "dependencies": {
-    "babel-cli": "^6.24.1",
-    "babel-core": "^6.25.0",
-    "babel-eslint": "^7.2.3",
-    "babel-loader": "^7.1.1",
-    "babel-preset-env": "^1.6.0",
-    "eslint": "^4.1.1",
-    "eslint-loader": "^1.8.0",
-    "fs-extra": "^3.0.1",
-    "rimraf": "^2.6.2",
-    "webpack": "^3.0.0",
-    "webpack-dev-server": "^2.8.2"
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.5",
+    "eslint": "^5.16.0",
+    "eslint-loader": "^2.1.2",
+    "fs-extra": "^7.0.1",
+    "rimraf": "^2.6.3",
+    "webpack": "^4.30.0",
+    "webpack-dev-server": "^3.3.1"
   }
 }
